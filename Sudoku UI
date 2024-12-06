@@ -62,14 +62,20 @@ def start_screen():
 def game_screen(difficulty):
     SCREEN.fill(WHITE)
 
+    # Draw the Sudoku grid
     for i in range(10):
         thickness = 4 if i % 3 == 0 else 1
         pygame.draw.line(SCREEN, BLACK, (50, 50 + i * 50), (500, 50 + i * 50), thickness)
         pygame.draw.line(SCREEN, BLACK, (50 + i * 50, 50), (50 + i * 50, 500), thickness)
 
-    reset_btn = draw_button("RESET", 100, 550, 100, 50, ORANGE)
-    restart_btn = draw_button("RESTART", 250, 550, 100, 50, ORANGE)
-    exit_btn = draw_button("EXIT", 400, 550, 100, 50, ORANGE)
+    # Define button dimensions and positions
+    button_width, button_height = 150, 50
+    button_y = 550
+    spacing = (WIDTH - 3 * button_width) // 4
+
+    reset_btn = draw_button("RESET", spacing, button_y, button_width, button_height, ORANGE)
+    restart_btn = draw_button("RESTART", 2 * spacing + button_width, button_y, button_width, button_height, ORANGE)
+    exit_btn = draw_button("EXIT", 3 * spacing + 2 * button_width, button_y, button_width, button_height, ORANGE)
 
     pygame.display.update()
 
