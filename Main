@@ -1,0 +1,27 @@
+import pygame
+
+def main():
+    pygame.init()
+    screen = pygame.display.set_mode((600, 600))
+    pygame.display.set_caption("Sudoku")
+    running = True
+
+    # Example setup:
+    sudoku_generator = SudokuGenerator(9, 30)
+    sudoku_generator.fill_values()
+    sudoku_generator.remove_cells()
+
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        screen.fill((255, 255, 255))  # Clear screen
+        # Add drawing and game logic here.
+
+        pygame.display.flip()
+
+    pygame.quit()
+
+if __name__ == "__main__":
+    main()
