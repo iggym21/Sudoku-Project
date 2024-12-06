@@ -1,3 +1,5 @@
+import pygame
+
 class Cell:
     def __init__(self, value, row, col, screen):
         self.value = value
@@ -6,6 +8,7 @@ class Cell:
         self.screen = screen
         self.sketched_value = 0
         self.selected = False
+        self.font = pygame.font.Font(None, 40)
 
     def set_cell_value(self, value):
         self.value = value
@@ -14,5 +17,15 @@ class Cell:
         self.sketched_value = value
 
     def draw(self):
-        # Placeholder: Use PyGame to visually render this cell.
-        pass
+        # Draw the cell rectangle
+        x, y = self.col * 60, self.row * 60
+        color = (255, 0, 0) if self.selected else (0, 0, 0)
+        pygame.draw.rect(self.screen, color, (x, y, 60, 60), 3)
+
+        # Draw the value
+        if self.value != 0:
+            text = self.font.render(str(self.value), True, (0, 0, 0))
+            self.screen.blit(text, (x + 20, y + 10))
+        elif self.sketched_value != 0:
+            text = self.font.render(str(self.sketched_value), True, (150, 150, 150))
+            self.screen.blit(text, (x + 5, y + 5))
